@@ -32,9 +32,19 @@ const heightPercentageToDP = heightPercent => {
   // Parse string percentage input and convert it to number.
   const elemHeight = typeof heightPercent === "number" ? heightPercent : parseFloat(heightPercent);
 
+  let height;
+  if (screenHeight > 812) {
+    height = 812;
+  } else if (screenHeight < 700) {
+    height = 700;
+  } else {
+    height = screenHeight;
+  }
+
+  
   // Use PixelRatio.roundToNearestPixel method in order to round the layout
   // size (dp) to the nearest one that correspons to an integer number of pixels.
-  return PixelRatio.roundToNearestPixel(screenHeight * elemHeight / 100);
+  return PixelRatio.roundToNearestPixel(height * elemHeight / 100);
 };
 
 /**
